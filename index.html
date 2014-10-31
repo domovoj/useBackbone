@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css"/>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+        <script type="text/javascript" src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <div id="block" class="block">
+        </div>
+
+        <!-- Блок ввода имени пользователя -->
+        <script type="text/template" id="start"> 
+            <div class="start"> 
+            <div class="userplace">
+            <label for="username">Имя пользователя: </label>
+            <input type="text" id="username" />
+            </div>
+            <div class="buttonplace">
+            <input type="button" value="Проверить" />
+            </div>
+            </div>
+        </script>
+
+        <!-- Блок ошибки -->
+        <script type="text/template" id="error">
+            <div class="error">
+            Ошибка. Пользователь  <%= username %> не найден.
+            <a href="#!/">Go back</a>
+            </div>
+        </script>
+
+        <!-- Блок удачи -->
+        <script type="text/template" id="success">
+            <div class="success">
+            Пользователь <%= username %> найден.
+            <a href="#!/">Go back</a>
+            </div>        
+        </script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
