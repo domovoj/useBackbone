@@ -23,8 +23,9 @@ var AppState = Backbone.Model.extend({
 });
 
 var UserNameModel = Backbone.Model.extend({// Модель пользователя
+    url: '/games/data',
     defaults: {
-        "Name": ""
+        "Name": "",
     }
 });
 var Family = Backbone.Collection.extend({// Коллекция пользователей
