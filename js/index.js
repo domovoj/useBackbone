@@ -1,4 +1,7 @@
 var Controller = Backbone.Router.extend({
+    initialize: function(){
+      console.log(arguments)  
+    },
     routes: {
         "": "start", // Пустой hash-тэг
         "!/": "start", // Начальная страница
@@ -25,7 +28,7 @@ var AppState = Backbone.Model.extend({
 var UserNameModel = Backbone.Model.extend({// Модель пользователя
     url: '/games/data',
     defaults: {
-        "Name": "",
+        "Name": ""
     }
 });
 var Family = Backbone.Collection.extend({// Коллекция пользователей
@@ -33,7 +36,7 @@ var Family = Backbone.Collection.extend({// Коллекция пользова�
     checkUser: function (username) { // Проверка пользователя
         var findResult = this.find(function (user) {
             return user.get("Name") == username
-        })
+        });
         return findResult != null;
     }
 });
@@ -86,7 +89,7 @@ appState.bind("change:state", function () { // подписка на смену 
 });
 
 
-var controller = new Controller(); // Создаём контроллер
+var controller = new Controller({a: 2}); // Создаём контроллер {a: 2} - попадає в initialize
 
 Backbone.history.start();  // Запускаем HTML5 History push 
 
