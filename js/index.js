@@ -48,10 +48,10 @@ var MyFamily = new Family([// Моя семья
 var appState = new AppState();
 
 var Block = Backbone.View.extend({
-    el: $("#block"), // DOM элемент widget'а
+    el: "#block", // DOM элемент widget'а
 
     initialize: function () { // Подписка на событие модели
-        this.model.bind('change', this.render, this);
+        this.model.on('change', this.render, this);
     },
     templates: {// Шаблоны на разное состояние
         "start": _.template($('#start').html()),
@@ -62,7 +62,7 @@ var Block = Backbone.View.extend({
         "click input:button": "check" // Обработчик клика на кнопке "Проверить"
     },
     check: function () {
-        var username = $(this.el).find("input:text").val();
+        var username = this.$("input:text").val();
         var find = MyFamily.checkUser(username); // Проверка имени пользователя
         appState.set({// Сохранение имени пользователя и состояния
             "state": find ? "success" : "error",
@@ -71,6 +71,7 @@ var Block = Backbone.View.extend({
     },
     render: function () {
         var state = this.model.get("state");
+        console.log(state+'2')
         $(this.el).html(this.templates[state](this.model.toJSON()));
         return this;
     }
@@ -79,8 +80,9 @@ var Block = Backbone.View.extend({
 var block = new Block({model: appState});
 appState.trigger("change");
 
-appState.bind("change:state", function () { // подписка на смену состояния для контроллера
+appState.on("change:state", function () { // подписка на смену состояния для контроллера
     var state = this.get("state");
+    console.log(state+'1')
     if (state == "start")
         controller.navigate("!/", false); // false потому, что нам не надо 
     // вызывать обработчик у Router
